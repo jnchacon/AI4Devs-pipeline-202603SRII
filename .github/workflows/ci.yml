@@ -1,9 +1,8 @@
 name: CI/CD Pipeline
 
 on:
-  push:
-    branches:
-      - pipeline-JCM
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   test:
