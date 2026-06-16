@@ -28,5 +28,6 @@ yarn-error.log*
 # .env
 
 # User files
-.user/
+.user/*.pem
+.user/*.csv
 
