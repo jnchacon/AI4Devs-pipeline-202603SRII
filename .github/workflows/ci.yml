@@ -97,3 +97,12 @@ jobs:
             npm install --production
             npx prisma generate
             pm2 restart backend || pm2 start dist/index.js --name backend
+            
+            # Health check: esperamos a que arranque y probamos
+            sleep 5
+            if ! curl -s http://localhost:3010 > /dev/null; then
+              echo "Error: La aplicación falló al arrancar. Mostrando los logs de error:"
+              pm2 logs backend --lines 20 --nostream
+              exit 1
+            fi
+            echo "¡Despliegue exitoso y aplicación respondiendo!"
